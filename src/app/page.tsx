@@ -300,7 +300,7 @@ export default function UploadPage() {
                     <span>Sign in Embedded Iframe</span>
                   </button>
                   <a
-                    href={result.signatureUrl}
+                    href={`${result.signatureUrl}?redirect_to=${encodeURIComponent(window.location.origin + '/callback')}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 border-2 border-black bg-white px-5 py-3.5 text-xs font-black uppercase tracking-wider text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all"
@@ -377,7 +377,7 @@ export default function UploadPage() {
               ) : null}
               
               <iframe
-                src={`${result.signatureUrl}&redirect_to=${encodeURIComponent(window.location.origin + '/callback')}`}
+                src={`${result.signatureUrl}?redirect_to=${encodeURIComponent(window.location.origin + '/callback')}`}
                 className="w-full h-full border-none"
                 title="Mock eSign Gateway"
               />
