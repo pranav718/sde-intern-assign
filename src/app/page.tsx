@@ -162,26 +162,21 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center bg-zinc-950 px-6 py-12 text-zinc-50 relative overflow-hidden">
+    <div className="flex-1 flex flex-col items-center justify-center px-6 py-12 text-black relative">
       
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-violet-600/5 rounded-full blur-[140px]" />
-        <div className="absolute top-1/2 left-3/4 w-[400px] h-[400px] bg-indigo-500/5 rounded-full blur-[120px]" />
-      </div>
-
       <div className="relative w-full max-w-2xl flex flex-col">
         
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl text-zinc-100">
+          <h1 className="text-3xl font-black tracking-tight sm:text-4xl text-black uppercase border-4 border-black bg-white px-6 py-3 shadow-[6px_6px_0px_0px_#000] inline-block">
             Upload & Sign Contracts
           </h1>
-          <p className="mt-3 text-sm text-zinc-400 max-w-md mx-auto">
+          <p className="mt-5 text-sm font-bold text-zinc-700 max-w-lg mx-auto bg-[#FFF9E6] border-2 border-black p-3.5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             Securely upload agreement files in PDF format, set signers, and complete authentication using simulated eSign gateways.
           </p>
         </div>
 
         {!result && (
-          <div className="w-full rounded-2xl border border-zinc-800/80 bg-zinc-900/30 p-8 backdrop-blur-xl shadow-xl shadow-black/30">
+          <div className="w-full bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
             
             <div
               onDragEnter={handleDrag}
@@ -189,10 +184,10 @@ export default function UploadPage() {
               onDragLeave={handleDrag}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={`flex flex-col items-center justify-center py-10 px-4 rounded-xl border border-dashed cursor-pointer transition-all duration-200 ${
+              className={`flex flex-col items-center justify-center py-12 px-4 border-4 border-dashed cursor-pointer transition-all duration-100 ${
                 dragActive
-                  ? 'border-violet-500 bg-violet-500/5 scale-[0.99]'
-                  : 'border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 hover:bg-zinc-950/60'
+                  ? 'border-[#8B5CF6] bg-[#FFF9E6] -translate-y-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]'
+                  : 'border-black bg-[#F9F9F6] hover:bg-white hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]'
               }`}
             >
               <input
@@ -203,48 +198,48 @@ export default function UploadPage() {
                 className="hidden"
               />
 
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <div className="flex h-14 w-14 items-center justify-center border-2 border-black bg-[#C5BAFF] shadow-[3px_3px_0px_0px_#000] text-black mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-7 h-7">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
                 </svg>
               </div>
 
               {file ? (
-                <div className="text-center">
-                  <p className="text-sm font-semibold text-zinc-200 max-w-[300px] truncate">{file.name}</p>
+                <div className="text-center font-bold">
+                  <p className="text-sm text-black max-w-[300px] truncate">{file.name}</p>
                   <p className="text-xs text-zinc-500 mt-1">{(file.size / (1024 * 1024)).toFixed(2)} MB</p>
                 </div>
               ) : (
-                <div className="text-center">
-                  <p className="text-sm font-medium text-zinc-300">Drag & drop your PDF contract here</p>
-                  <p className="text-xs text-zinc-600 mt-1">or click to browse files (max 5MB)</p>
+                <div className="text-center font-bold">
+                  <p className="text-sm text-black uppercase tracking-wider">Drag & drop your PDF contract here</p>
+                  <p className="text-xs text-zinc-650 mt-1.5 uppercase tracking-wide">or click to browse files (max 5MB)</p>
                 </div>
               )}
             </div>
 
             {uploadError && (
-              <div className="mt-4 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-xs text-red-400">
+              <div className="mt-4 border-2 border-black bg-[#F87171] p-3 text-xs font-bold text-black shadow-[3px_3px_0px_0px_#000]">
                 {uploadError}
               </div>
             )}
 
             {file && (
-              <div className="mt-6 flex justify-end gap-3">
+              <div className="mt-6 flex justify-end gap-3 font-bold">
                 <button
                   onClick={() => setFile(null)}
                   disabled={uploading}
-                  className="rounded-xl border border-zinc-800 bg-zinc-950/40 px-5 py-2.5 text-xs font-semibold text-zinc-400 transition hover:bg-zinc-900 hover:text-zinc-200 disabled:opacity-50"
+                  className="border-2 border-black bg-white px-5 py-3 text-xs uppercase tracking-wider text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all disabled:opacity-50"
                 >
                   Clear File
                 </button>
                 <button
                   onClick={handleUpload}
                   disabled={uploading}
-                  className="flex items-center justify-center gap-2 rounded-xl bg-violet-600 px-6 py-2.5 text-xs font-semibold text-white shadow-md shadow-violet-600/20 transition hover:bg-violet-500 disabled:opacity-50"
+                  className="flex items-center justify-center gap-2 border-2 border-black bg-[#4ADE80] px-6 py-3 text-xs uppercase tracking-wider text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all disabled:opacity-50"
                 >
                   {uploading ? (
                     <>
-                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-black border-t-transparent" />
                       <span>Uploading ({uploadProgress}%)</span>
                     </>
                   ) : (
@@ -258,51 +253,49 @@ export default function UploadPage() {
         )}
 
         {result && (
-          <div className="w-full rounded-2xl border border-zinc-800 bg-zinc-900/40 p-8 backdrop-blur-xl shadow-xl shadow-black/30 relative">
+          <div className="w-full bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative">
             
-            <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-80" />
-
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 text-violet-400 shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+              <div className="flex h-12 w-12 items-center justify-center border-2 border-black bg-[#C5BAFF] shadow-[3px_3px_0px_0px_#000] text-black shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                 </svg>
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-base font-bold text-zinc-100 truncate">
+                <h3 className="text-base font-black text-black truncate uppercase">
                   {file?.name || 'Contract Document'}
                 </h3>
-                <p className="text-xs text-zinc-500 mt-0.5">Ready for signature authentication</p>
+                <p className="text-xs font-bold text-zinc-500 mt-1">Ready for signature authentication</p>
               </div>
               <div className="flex flex-col items-end">
-                <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${
+                <span className={`text-[10px] font-black uppercase tracking-wider px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${
                   signingStatus === 'COMPLETED'
-                    ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
-                    : 'bg-amber-500/10 border-amber-500/20 text-amber-400 animate-pulse'
+                    ? 'bg-[#4ADE80] text-black'
+                    : 'bg-[#FACC15] text-black animate-pulse'
                 }`}>
                   {signingStatus}
                 </span>
               </div>
             </div>
 
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-zinc-800/80 pt-6 text-zinc-400 text-xs">
-              <div className="space-y-1">
-                <span className="block font-semibold uppercase tracking-wider text-zinc-500 text-[10px]">Document ID</span>
-                <span className="font-mono text-zinc-200 select-all">{result.documentId}</span>
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 border-t-2 border-black pt-6 text-black text-xs font-bold">
+              <div className="space-y-1.5 bg-[#F9F9F6] border-2 border-black p-3.5 shadow-[3px_3px_0px_0px_#000]">
+                <span className="block font-black uppercase tracking-wider text-zinc-500 text-[10px]">Document ID</span>
+                <span className="font-mono text-black select-all break-all">{result.documentId}</span>
               </div>
-              <div className="space-y-1">
-                <span className="block font-semibold uppercase tracking-wider text-zinc-500 text-[10px]">Signature ID</span>
-                <span className="font-mono text-zinc-200 select-all">{result.signatureId}</span>
+              <div className="space-y-1.5 bg-[#F9F9F6] border-2 border-black p-3.5 shadow-[3px_3px_0px_0px_#000]">
+                <span className="block font-black uppercase tracking-wider text-zinc-500 text-[10px]">Signature ID</span>
+                <span className="font-mono text-black select-all break-all">{result.signatureId}</span>
               </div>
             </div>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 pt-4 border-t border-zinc-900">
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 pt-6 border-t-2 border-black">
               
               {signingStatus === 'PENDING' ? (
                 <>
                   <button
                     onClick={() => setShowIframeModal(true)}
-                    className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-violet-600 px-5 py-3 text-xs font-semibold text-white shadow-lg shadow-violet-600/15 hover:bg-violet-500 transition duration-200"
+                    className="flex-1 flex items-center justify-center gap-2 border-2 border-black bg-[#A78BFA] px-5 py-3.5 text-xs font-black uppercase tracking-wider text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all"
                   >
                     <span>Sign in Embedded Iframe</span>
                   </button>
@@ -310,7 +303,7 @@ export default function UploadPage() {
                     href={result.signatureUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 rounded-xl border border-zinc-800 bg-zinc-950/50 px-5 py-3 text-xs font-semibold text-zinc-300 hover:bg-zinc-900 hover:text-zinc-100 transition duration-200"
+                    className="flex-1 flex items-center justify-center gap-2 border-2 border-black bg-white px-5 py-3.5 text-xs font-black uppercase tracking-wider text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all"
                   >
                     <span>Sign in New Tab</span>
                   </a>
@@ -318,9 +311,9 @@ export default function UploadPage() {
               ) : (
                 <button
                   onClick={handleDownload}
-                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 py-3 text-xs font-semibold text-white shadow-lg shadow-emerald-600/15 hover:bg-emerald-500 transition duration-200 animate-fade-in"
+                  className="w-full flex items-center justify-center gap-2 border-2 border-black bg-[#4ADE80] px-5 py-4 text-xs font-black uppercase tracking-wider text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
                   </svg>
                   <span>Download Signed PDF</span>
@@ -329,14 +322,14 @@ export default function UploadPage() {
 
             </div>
 
-            <div className="mt-4 text-center">
+            <div className="mt-6 text-center">
               <button
                 onClick={() => {
                   setFile(null);
                   setResult(null);
                   setSigningStatus('PENDING');
                 }}
-                className="text-[11px] text-zinc-500 hover:text-zinc-300 underline transition"
+                className="text-[11px] text-zinc-650 hover:text-black font-bold uppercase underline tracking-wider transition"
               >
                 Upload another contract
               </button>
@@ -348,37 +341,37 @@ export default function UploadPage() {
       </div>
 
       {showIframeModal && result && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-6 animate-fade-in">
-          <div className="relative w-full max-w-2xl h-[85vh] rounded-2xl border border-zinc-800 bg-zinc-950 flex flex-col overflow-hidden shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 sm:p-6 backdrop-blur-none">
+          <div className="relative w-full max-w-2xl h-[85vh] border-4 border-black bg-white flex flex-col overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
             
-            <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-900 bg-zinc-950">
-              <div className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
-                <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">
-                  eSign Secure Iframe Session
+            <div className="flex items-center justify-between px-6 py-4 border-b-4 border-black bg-[#C5BAFF]">
+              <div className="flex items-center gap-2.5">
+                <div className="h-3 w-3 rounded-none border border-black bg-[#FACC15] animate-pulse" />
+                <span className="text-xs font-black uppercase tracking-wider text-black">
+                  eSign Secure Session Iframe
                 </span>
               </div>
               <button
                 onClick={() => setShowIframeModal(false)}
-                className="rounded-lg p-1 text-zinc-500 hover:bg-zinc-900 hover:text-zinc-300 transition"
+                className="border-2 border-black bg-white p-1 hover:bg-[#F87171] hover:text-black active:translate-x-0.5 active:translate-y-0.5 transition-all shadow-[2px_2px_0px_0px_#000]"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                <svg xmlns="http://www.w3.org/205" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
-            <div className="flex-1 bg-zinc-900 relative">
+            <div className="flex-1 bg-white relative">
               {signingStatus === 'COMPLETED' ? (
-                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-zinc-950/90 text-center p-6 space-y-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/95 text-center p-6 space-y-4">
+                  <div className="flex h-16 w-16 items-center justify-center border-4 border-black bg-[#4ADE80] text-black shadow-[4px_4px_0px_0px_#000]">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-8 h-8">
                       <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-zinc-100">Verification Complete</h4>
-                    <p className="text-xs text-zinc-500 mt-1">Successfully signed document. Closing iframe...</p>
+                    <h4 className="text-lg font-black text-black uppercase">Verification Complete</h4>
+                    <p className="text-xs font-bold text-zinc-600 mt-1">Successfully signed document. Closing iframe...</p>
                   </div>
                 </div>
               ) : null}

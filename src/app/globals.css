@@ -2,22 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #09090b;
-    --foreground: #fafafa;
+@layer base {
+  body {
+    background-color: #f4f2eb;
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: #000000;
+    font-family: var(--font-jetbrains-mono), monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer utilities {
+  .neo-border {
+    border: 3px solid #000000;
+  }
+  .neo-border-sm {
+    border: 2px solid #000000;
+  }
+  .neo-border-lg {
+    border: 4px solid #000000;
+  }
+  
+  .neo-shadow-sm {
+    box-shadow: 2px 2px 0px 0px #000000;
+  }
+  .neo-shadow {
+    box-shadow: 4px 4px 0px 0px #000000;
+  }
+  .neo-shadow-lg {
+    box-shadow: 6px 6px 0px 0px #000000;
+  }
+  .neo-shadow-xl {
+    box-shadow: 8px 8px 0px 0px #000000;
+  }
+
+  /* Snappy click animations for cards & buttons */
+  .neo-clickable {
+    transition: all 0.1s ease-out;
+  }
+  .neo-clickable:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px #000000;
+  }
+  .neo-clickable:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px #000000;
+  }
+
+  .neo-clickable-lg {
+    transition: all 0.1s ease-out;
+  }
+  .neo-clickable-lg:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0px 0px #000000;
+  }
+  .neo-clickable-lg:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0px 0px #000000;
+  }
+}
+
+/* Custom progress bar styles */
+.progress-bar-neo {
+  background: repeating-linear-gradient(
+    45deg,
+    #facc15,
+    #facc15 10px,
+    #000000 10px,
+    #000000 20px
+  );
 }
